@@ -1,3 +1,5 @@
+using ado_net.DAL;
+using ado_net.DAL.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,10 +30,13 @@ namespace ado_net
         {
 
             services.AddControllers();
+            services.AddScoped<IPersonDAL, PersonDAL>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ado_net", Version = "v1" });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
